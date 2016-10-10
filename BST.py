@@ -1,5 +1,5 @@
 class Node:
-    def __init__(self,data,left=None,right=None):
+    def __init__(self, data, left=None, right=None):
         self.data = data
         self.left = left
         self.right = right
@@ -35,8 +35,15 @@ class BinarySearchTree:
         print(node.data, end=' ')
         self.Traverse(node.right)
 
+    def GetHeight(self,node):
+        if node is None:
+            return 0
+        else:
+            return max(self.GetHeight(node.left), self.GetHeight(node.right)) + 1
+
 
 bst = BinarySearchTree()
 for e in [5,2,8,4,2,7,6,8]:
     bst.Insert(e)
 bst.Traverse(bst.root)
+print("\nHeight = "+str(bst.GetHeight(bst.root)))
