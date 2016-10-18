@@ -1,32 +1,19 @@
-import sys
-t = 79
-for a0 in range(t):
-    s = input().strip()
-    stack = []
-    flag = True
-    for i in range(len(s)):
-        if s[i] == '(' or s[i] == '{' or s[i] == '[':
-            stack.append(s[i])
+q = 1
+for iter in range(q):
+    (n, k, m) = (4,2,101000000)
+    #(n, k, m) = (int(n), int(k), int(m))
+    s = [int(x) for x in input().split()]
+
+    dictOmmit = {}
+    for num in s:
+        t = int(m / num)
+        for i in range(1, t + 1):
+            dictOmmit[str(num * i)] = 0
+
+    total = 0
+    for i in range(1, m + 1):
+        if str(i) in dictOmmit:
+            pass
         else:
-            if s[i] == ')':
-                if len(stack) == 0 or stack[len(stack)-1] != '(':
-                    flag = False
-                    break
-                else:
-                    stack.pop()
-            elif s[i] == '}':
-                if len(stack) == 0 or stack[len(stack)-1] != '{':
-                    flag = False
-                    break
-                else:
-                    stack.pop()
-            elif s[i] == ']':
-                if len(stack) == 0 or stack[len(stack)-1] != '[':
-                    flag = False
-                    break
-                else:
-                    stack.pop()
-    if flag:
-        print("YES")
-    else:
-        print("NO")
+            total += i ** k
+    print(total)
